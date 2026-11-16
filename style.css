@@ -1,0 +1,37 @@
+:root {
+  --stout: #0E0C0A; --surface: #1A1714; --raised: #24201C; --hairline: rgba(255,255,255,.08);
+  --foam: #F3E9D7; --muted: #A89F92; --gold: #C9A24B;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--stout); color: var(--foam);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+main { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
+header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+header img { width: 56px; height: 56px; border-radius: 13px; }
+header a { color: var(--foam); text-decoration: none; font: 600 26px/1.1 Georgia, "Times New Roman", serif; }
+nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: -12px 0 28px; font-size: 15px; }
+nav a { color: var(--muted); }
+h1 { font: 700 36px/1.15 Georgia, "Times New Roman", serif; margin: 0 0 8px; }
+h2 { font: 600 22px/1.3 Georgia, "Times New Roman", serif; margin: 36px 0 8px; }
+h3 { font-size: 17px; margin: 22px 0 4px; }
+p, li { color: var(--foam); }
+.muted, .updated { color: var(--muted); }
+.updated { font-size: 15px; margin-bottom: 24px; }
+a { color: var(--gold); }
+ul { padding-left: 22px; }
+li { margin: 4px 0; }
+.card { background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; padding: 18px 20px; margin: 18px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--hairline); }
+th { color: var(--muted); font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--hairline); color: var(--muted); font-size: 14px; }
+.hero { text-align: center; padding: 40px 0 8px; }
+.hero img { width: 112px; height: 112px; border-radius: 25px; }
+.hero h1 { font-size: 44px; margin-top: 18px; }
+.hero p { color: var(--muted); font-size: 19px; max-width: 520px; margin: 0 auto; }
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 28px 0; }
+.links a { background: var(--surface); border: 1px solid var(--hairline); color: var(--foam); text-decoration: none; padding: 10px 18px; border-radius: 999px; }
