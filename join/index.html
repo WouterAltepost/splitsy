@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a crew on Splitsy</title>
+<meta name="description" content="You're invited to a crew on Splitsy: split the G with your friends.">
+<meta property="og:title" content="Join my crew on Splitsy">
+<meta property="og:description" content="Split the G with your friends: a crew leaderboard for the perfect pour.">
+<meta property="og:image" content="https://wouteraltepost.github.io/splitsy/AppMark.png">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../AppMark.png">
+<link rel="apple-touch-icon" href="../AppMark.png">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .join { text-align: center; padding-top: 24px; }
+  .join img { width: 96px; height: 96px; border-radius: 22px; }
+  .join h1 { margin-top: 16px; }
+  .join .lead { color: var(--muted); font-size: 18px; max-width: 460px; margin: 0 auto 8px; }
+  .code { font: 700 40px/1 "SF Mono", ui-monospace, Menlo, monospace; letter-spacing: .18em; color: var(--foam);
+          background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; padding: 18px 22px 18px 30px;
+          display: inline-block; margin: 20px 0 6px; }
+  .copy { background: none; border: 0; color: var(--gold); font: inherit; font-size: 15px; cursor: pointer; padding: 6px; }
+  .buttons { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 26px auto 0; }
+  .button { display: block; text-decoration: none; text-align: center; padding: 15px 20px; border-radius: 999px;
+            font-weight: 600; font-size: 17px; }
+  .primary { background: var(--foam); color: var(--stout); }
+  .secondary { background: var(--surface); border: 1px solid var(--hairline); color: var(--foam); }
+  .steps { text-align: left; max-width: 420px; margin: 30px auto 0; }
+  .steps li { color: var(--muted); }
+  .steps strong { color: var(--foam); }
+  .missing { display: none; }
+  .no-code .has-code { display: none; }
+  .no-code .missing { display: block; }
+</style>
+</head>
+<body>
+<main>
+<div class="join">
+  <img src="../AppMark.png" alt="">
+  <h1>Join my crew on Splitsy</h1>
+  <p class="lead">Split the G with your friends: a crew leaderboard for the perfect pour. 18+.</p>
+
+  <div class="has-code">
+    <div class="code" id="code" aria-label="Invite code">······</div><br>
+    <button class="copy" id="copy" type="button">Copy code</button>
+    <div class="buttons">
+      <a class="button primary" id="open" href="splitsy://join/">Open in Splitsy</a>
+      <a class="button secondary" href="https://apps.apple.com/app/id6833879431">Get Splitsy on the App Store</a>
+    </div>
+    <ol class="steps">
+      <li><strong>Have Splitsy?</strong> Tap Open in Splitsy, or go to Crews → Join with code.</li>
+      <li><strong>New to Splitsy?</strong> Install it from the App Store, sign up, then tap Join with code and enter the code above.</li>
+    </ol>
+  </div>
+
+  <div class="missing">
+    <p class="lead">This invite link has no code. Ask your friend for the 6-letter crew code, or get the app:</p>
+    <div class="buttons">
+      <a class="button primary" href="https://apps.apple.com/app/id6833879431">Get Splitsy on the App Store</a>
+    </div>
+  </div>
+</div>
+<footer>Splitsy · <a href="../support.html">Support</a> · <a href="../privacy.html">Privacy</a> · Splitsy isn't affiliated with or endorsed by any brewery.</footer>
+</main>
+<script>
+(function () {
+  // Crew codes: 6 characters from the app's invite alphabet (no 0, O, 1, I, L).
+  var raw = new URLSearchParams(location.search).get("code") || "";
+  var code = raw.trim().toUpperCase();
+  if (!/^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/.test(code)) {
+    document.body.classList.add("no-code");
+    return;
+  }
+  var appLink = "splitsy://join/" + code;
+  document.getElementById("code").textContent = code;
+  document.getElementById("open").href = appLink;
+  document.title = "Join crew " + code + " on Splitsy";
+  document.getElementById("copy").addEventListener("click", function () {
+    var button = this;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(code).then(function () { button.textContent = "Copied"; });
+    }
+  });
+  // Try the app once on an iPhone; without the app nothing happens and the page stays.
+  var tried = false;
+  try { tried = sessionStorage.getItem("tried-" + code) === "1"; sessionStorage.setItem("tried-" + code, "1"); } catch (e) {}
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !tried) {
+    setTimeout(function () { location.href = appLink; }, 400);
+  }
+})();
+</script>
+</body>
+</html>
